@@ -8,7 +8,7 @@ name: R-CMD-check
 
 env:
   BROKERS_INTERNAL: localhost:9092
-  BROKERS_EXTERNAL: localhost:9093
+  BROKERS: localhost:9093
   TOPIC: test-topic
 
 jobs:
