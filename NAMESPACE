@@ -2,5 +2,8 @@
 
 export(Consumer)
 export(Producer)
+export(content)
+export(is_empty)
 importFrom(Rcpp,evalCpp)
+importFrom(methods,new)
 useDynLib(kafkaClient, .registration=TRUE)

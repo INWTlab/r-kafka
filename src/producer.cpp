@@ -1,6 +1,6 @@
 #include <librdkafka/rdkafkacpp.h>
 #include <Rcpp.h>
-#include "utils.hpp"
+#include "utils.h"
 
 using namespace Rcpp;
 

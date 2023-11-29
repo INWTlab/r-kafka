@@ -6,7 +6,7 @@ Author: Andreas Neudecker<andreas.neudecker@inwt-statistics.de>
 Maintainer: Andreas Neudecker<andreas.neudecker@inwt-statistics.de>
 Description: This package is a wrapper for the librdkafka C/C++ library. It can be used to produce and consume messages from Kafka.
 License: MIT + file LICENSE
-Imports: Rcpp (>= 1.0.10)
+Imports: Rcpp (>= 1.0.10), methods
 LinkingTo: Rcpp
 SystemRequirements: librdkafka - Apache Kafka C driver library
 RoxygenNote: 7.2.3
