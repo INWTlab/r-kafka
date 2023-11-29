@@ -26,8 +26,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install mac dependency
+        if: runner.os == 'macos'
         run: |
-          brew install librdkafka docker-compose
+          brew install librdkafka docker docker-compose
 
       - name: Start kafka cluster
         run: |
