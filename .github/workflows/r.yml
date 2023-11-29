@@ -29,6 +29,7 @@ jobs:
         if: runner.os == 'macos'
         run: |
           brew install librdkafka docker docker-compose
+          colima start
 
       - name: Start kafka cluster
         run: |
