@@ -1,6 +1,7 @@
 version: "3.7"
 services:
     zookeeper:
+        container_name: zookeeper
         restart: always
         image: docker.io/bitnami/zookeeper:3.8
         ports:
@@ -10,6 +11,7 @@ services:
         environment:
             - ALLOW_ANONYMOUS_LOGIN=yes
     kafka:
+        container_name: kafka-server
         restart: always
         image: docker.io/bitnami/kafka:3.3
         ports:
