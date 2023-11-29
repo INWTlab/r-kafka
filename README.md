@@ -26,7 +26,7 @@ For official installation instructions, see https://github.com/confluentinc/libr
 #### Ubuntu and debian systems
 
 ```sh
-apt get install librdkafka-dev
+apt-get install librdkafka-dev
 ```
 
 #### Mac OS X systems
