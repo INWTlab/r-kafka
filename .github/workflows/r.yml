@@ -25,9 +25,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: install librdkafka
+      - name: Install mac dependency
         run: |
-          brew install librdkafka
+          brew install librdkafka docker-compose
+
+      - name: Start kafka cluster
+        run: |
+          docker-compose up -d
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -41,6 +45,14 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+
+      - name: Configure kafka server for tests
+        run: |
+          docker exec r-kafka-client_kafka_1 \
+            /opt/bitnami/kafka/bin/kafka-topics.sh \
+              --bootstrap-server localhost:9092 \
+              --create --topic test-topic \
+              --partitions 4
 
       - uses: r-lib/actions/check-r-package@v2
         with:
