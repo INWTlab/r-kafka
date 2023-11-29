@@ -39,37 +39,31 @@ brew install librdkafka
 
 We are using trivup to spin up a local kafka cluster for testing
 
-## Start Kafka Cluster
+### Start Local Kafka Cluster
 
-Install trivup locally
+/opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092
+--create --topic test-topic --partitions 4
 
-```
-pip install trivup
-```
+Install docker-compose:
 
-Start Kafka Cluster locally:
-
-```
-# create cluster and enter shell
-python3 -m trivup.clusters.KafkaCluster --version 3.1.0
-
-# create topic named $TOPIC
-TOPIC=my-test-topic
-
-$KAFKA_PATH/bin/kafka-topics.sh --bootstrap-server $BROKERS \
-  --create --topic $TOPIC --partitions 4 --replication-factor 3
-
-# persist broker address to be accessible from R
-echo BROKERS=$BROKERS > .Renviron
-echo TOPIC=$TOPIC >> .Renviron
+```sh
+apt install docker-compose
 ```
 
-Open R in a new Terminal or reload .Renviron file using `readRenviron(".Renviron")`. Execute tests
-using `devtools::test()`
+Start cluster:
 
-After you are done you can stop the kafka cluster in the first shell by exiting from it:
-
+```sh
+docker-compose up -d
 ```
-# exit shell, teardown
-exit
+
+Create a new topic
+
+```sh
+/opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test-topic --partitions 4
+```
+
+### Run tests
+
+```sh
+Rscript -e "devtools::install(); devtools::test();"
 ```
