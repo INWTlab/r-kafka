@@ -40,7 +40,7 @@ jobs:
       - name: Install linux dependency
         if: runner.os == 'linux'
         run: |
-          brew install librdkafka docker-compose
+          apt install librdkafka docker-compose
 
       - name: Start kafka cluster
         run: |
