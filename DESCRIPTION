@@ -1,0 +1,16 @@
+Package: kafkaClient
+Type: Package
+Title: Kafka Client for R
+Version: 0.0.1
+Date: 2023-08-01
+Author: Andreas Neudecker<andreas.neudecker@inwt-statistics.de>
+Maintainer: Andreas Neudecker<andreas.neudecker@inwt-statistics.de>
+Description: This package is a wrapper for the librdkafka C/C++ library. It can be used to produce and consume messages from Kafka.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.10)
+LinkingTo: Rcpp
+RoxygenNote: 7.2.3
+Encoding: UTF-8
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
