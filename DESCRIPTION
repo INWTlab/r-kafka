@@ -8,8 +8,9 @@ Description: This package is a wrapper for the librdkafka C/C++ library. It can 
 License: MIT + file LICENSE
 Imports: Rcpp (>= 1.0.10)
 LinkingTo: Rcpp
+SystemRequirements: librdkafka - Apache Kafka C driver library
 RoxygenNote: 7.2.3
 Encoding: UTF-8
-Suggests: 
+Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
