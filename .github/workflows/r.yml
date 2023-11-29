@@ -59,6 +59,11 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
+      - name: Create and populate .Renviron file
+        run: |
+          echo TOPIC="$TOPIC" > ~/.Renviron
+          echo BROKERS="$BROKERS" >> ~/.Renviron
+
       - name: Configure kafka server for tests
         run: |
           docker exec kafka-server \
