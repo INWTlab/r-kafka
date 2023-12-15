@@ -61,6 +61,10 @@ public:
 
     void close()
     {
+        // Following
+        // https://github.com/confluentinc/librdkafka/blob/master/INTRODUCTION.md#producer
+        // and https://github.com/confluentinc/librdkafka/issues/1499
+        producer->flush(60*1000);
         delete producer;
     }
 
