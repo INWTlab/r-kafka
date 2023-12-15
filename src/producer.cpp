@@ -19,6 +19,7 @@ public:
         {
             Rcpp::stop("Failed to create Kafka producer: " + errstr);
         }
+
     }
 
     void produce(const std::string topic, const std::string message)
@@ -58,6 +59,11 @@ public:
         }
     }
 
+    void close()
+    {
+        delete producer;
+    }
+
 private:
     RdKafka::Conf *conf;
     RdKafka::Producer *producer;
@@ -69,5 +75,6 @@ RCPP_MODULE(producer_module)
     class_<Producer>("Producer")
         .constructor<Rcpp::List>()
         .method("produce", &Producer::produce)
-        .method("flush", &Producer::flush);
+        .method("flush", &Producer::flush)
+        .method("close", &Producer::close);
 }

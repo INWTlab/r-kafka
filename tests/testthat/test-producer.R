@@ -5,4 +5,3 @@ test_that("Teardown producer", {
 
     expect_error(Producer(config_producer), NA)
 })
-

@@ -6,3 +6,5 @@ docker-compose.yml
 Dockerfile
 scratch.R
 tmp*
+^.*\.Rproj$
+^\.Rproj\.user$
