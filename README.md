@@ -35,6 +35,13 @@ apt get install librdkafka-dev
 brew install librdkafka
 ```
 
+#### Windows
+
+- Install RTools (i.e. using `installr::install.rtools()`)
+- Download the librdkafka binaries and header files using the rtools bash / msys2 command line: `pacman -Sy mingw-w64-ucrt-x86_64-librdkafka`
+- Add the path to the msys2 binaries to your windows PATH (settings -> edit environment variables for your account)
+- (Potentially) change directory to msys2 in the Makevars.win file if it is not located at `C:/rtools43/ucrt64/`
+
 ## (Integration) Tests
 
 We are using trivup to spin up a local kafka cluster for testing

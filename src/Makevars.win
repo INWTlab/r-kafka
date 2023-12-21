@@ -1,0 +1,2 @@
+PKG_CXXFLAGS = -I/C/rtools43/ucrt64/include
+PKG_LIBS = -L/C/rtools43/ucrt64/lib -lrdkafka++
