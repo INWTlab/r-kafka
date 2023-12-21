@@ -1,2 +1,0 @@
-PKG_CPPFLAGS = -lrdkafka++
-PKG_LIBS = -lrdkafka++
