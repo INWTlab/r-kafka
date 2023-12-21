@@ -1,0 +1,5 @@
+linters: with_defaults(
+    object_name_linter("snake_case"),
+    line_length_linter(100)
+    )
+exclude: "# Exclude Linting"
