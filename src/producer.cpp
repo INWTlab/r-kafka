@@ -48,6 +48,34 @@ public:
         }
     }
 
+
+    void produce_with_key(const std::string topic, const std::string key, const std::string message)
+    {
+        if (!producer)
+        {
+            Rcpp::stop("Kafka producer is not initialized.");
+        }
+
+        RdKafka::ErrorCode err = producer->produce(topic, RdKafka::Topic::PARTITION_UA,
+                                                   RdKafka::Producer::RK_MSG_COPY /* Copy payload */,
+                                                   /* Value */
+                                                   const_cast<char *>(message.data()), message.size(),
+                                                   /* Key */
+                                                   const_cast<char *>(key.data()), key.size(),
+                                                   /* Timestamp (defaults to now) */
+                                                   0,
+                                                   /* Message headers, if any */
+                                                   NULL,
+                                                   /* Per-message opaque value passed to
+                                                    * delivery report */
+                                                   NULL);
+
+        if (err != RdKafka::ERR_NO_ERROR)
+        {
+            Rcpp::stop("Failed to produce message: " + RdKafka::err2str(err));
+        }
+    }
+
     void flush(const int timeout_ms)
     {
         RdKafka::ErrorCode err = producer->flush(timeout_ms);
@@ -69,5 +97,6 @@ RCPP_MODULE(producer_module)
     class_<Producer>("Producer")
         .constructor<Rcpp::List>()
         .method("produce", &Producer::produce)
+        .method("produce_with_key", &Producer::produce_with_key)
         .method("flush", &Producer::flush);
 }

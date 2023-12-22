@@ -58,6 +58,13 @@ Start cluster:
 docker-compose up -d
 ```
 
+Save configuration in .Renviron
+
+```sh
+echo TOPIC="test-topic" > .Renviron
+echo BROKERS="localhost:9093" >> .Renviron
+```
+
 Create a new topic
 
 ```sh
