@@ -45,14 +45,15 @@ while True:
     random_index = random.randrange(len(random_strings))
     current_string = random_strings[random_index]
 
-    # insert random function here
+    producer.produce("test_topic", current_string)
+    producer.poll(0)
 
     strings_processed += 1
     random_strings.pop(random_index)
 
     elapsed_time = time.time() - start_time
     if elapsed_time >= measurement_interval:
-        # insert random function here
+        producer.flush()
         print(f"Strings produced so far at {elapsed_time} seconds: {strings_processed}")
         str_processed_over_time.append(strings_processed)
         strings_processed = 0
