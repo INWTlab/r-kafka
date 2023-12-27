@@ -1,4 +1,4 @@
-Package: kafkaClient
+Package: kafka
 Type: Package
 Title: Kafka Client for R
 Version: 0.0.1

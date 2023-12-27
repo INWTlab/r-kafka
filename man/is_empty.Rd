@@ -7,7 +7,7 @@
 is_empty(msg)
 }
 \arguments{
-\item{msg}{(a message)}
+\item{msg}{A KafkaMessage}
 }
 \description{
 Check if message is empty

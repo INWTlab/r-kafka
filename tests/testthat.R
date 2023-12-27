@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(kafkaClient)
+library(kafka)
 
-test_check("kafkaClient")
+test_check("kafka")

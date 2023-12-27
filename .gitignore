@@ -8,3 +8,9 @@ src/*.dll
 tmp-KafkaCluster/*
 .Renviron
 scratch.R
+src/Makevars
+autom4te.cache
+config.log
+config.status
+configure~
+aclocal.m4

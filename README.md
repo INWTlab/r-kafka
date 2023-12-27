@@ -26,7 +26,7 @@ For official installation instructions, see https://github.com/confluentinc/libr
 #### Ubuntu and debian systems
 
 ```sh
-apt-get install librdkafka-dev
+apt get install librdkafka-dev
 ```
 
 #### Mac OS X systems
@@ -35,14 +35,16 @@ apt-get install librdkafka-dev
 brew install librdkafka
 ```
 
+#### Windows
+
+- Install RTools (i.e. using `installr::install.rtools()`)
+- Download the librdkafka binaries and header files using the rtools bash / msys2 command line: `pacman -Sy mingw-w64-ucrt-x86_64-librdkafka`
+- Add the path to the msys2 binaries to your windows PATH (settings -> edit environment variables for your account)
+- (Potentially) change directory to msys2 in the Makevars.win file if it is not located at `C:/rtools43/ucrt64/`
+
 ## (Integration) Tests
 
-We are using trivup to spin up a local kafka cluster for testing
-
 ### Start Local Kafka Cluster
-
-/opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092
---create --topic test-topic --partitions 4
 
 Install docker-compose:
 
@@ -56,10 +58,17 @@ Start cluster:
 docker-compose up -d
 ```
 
+Save configuration in .Renviron
+
+```sh
+echo TOPIC="test-topic" > .Renviron
+echo BROKERS="localhost:9093" >> .Renviron
+```
+
 Create a new topic
 
 ```sh
-/opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test-topic --partitions 4
+docker exec kafka-server /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test-topic --partitions 4
 ```
 
 ### Run tests

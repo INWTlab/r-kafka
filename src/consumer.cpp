@@ -92,6 +92,11 @@ public:
             payload_size = msg->len();
 
             result["payload_data"] = std::string(static_cast<const char *>(payload), payload_size);
+
+            if (msg->key()) {
+                result["key"] = *msg->key();
+            }
+            
             break;
         case RdKafka::ERR__TIMED_OUT:
             break;
