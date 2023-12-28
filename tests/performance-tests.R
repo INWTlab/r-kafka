@@ -1,5 +1,4 @@
 ## setup ----------------------------------------------------------------------
-library(tictoc)
 devtools::load_all()
 
 bootstrap_servers = "xxx"
@@ -94,24 +93,3 @@ ggplot(data, aes(x = Time)) +
   labs(x = "Time (seconds)", y = "Measurement Values", title = "Line Chart of Measurements") +
   scale_color_manual(values = c("Line 1" = "blue", "Line 2" = "red")) +
   scale_linetype_manual(values = c("Line 1" = "solid", "Line 2" = "dashed"))
-
-#### tmp: may be removed?
-trials <- list(c(1, 10000), c(10000, 20000), c(20000, 30000), c(30000, 40000), c(40000, 50000))
-
-while(TRUE){
-  for (trial in trials){
-    data <- paste0("test-msg", trial[1]:trial[2])
-    tic()
-    sapply(data, function(x) producer$produce("test-topic", x))
-    toc()
-    Sys.sleep(1)
-  }
-}
-producer$flush(1000)
-tic()
-for(i in 1:rounds){
-  consumer$consume(1000)
-}
-cs_time = toc()
-
-# To Do: Plots
