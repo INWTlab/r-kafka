@@ -101,11 +101,10 @@ public:
         case RdKafka::ERR__TIMED_OUT:
             break;
         default:
-            result["error"] = msg->errstr();
+            result["error_message"] = msg->errstr();
+            result["error_code"] = RdKafka::err2str(msg->err());
             Rcpp::Rcout << "Error: " << msg->errstr() << std::endl;
         }
-
-        result.attr("class") = "KafkaMessage";
 
         return result;
     }

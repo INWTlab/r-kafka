@@ -3,6 +3,6 @@ test_that("Teardown producer", {
         "bootstrap.servers" = brokers
     )
 
-    expect_error(Producer(config_producer), NA)
+    expect_error(Producer$new(config_producer), NA)
 })
 

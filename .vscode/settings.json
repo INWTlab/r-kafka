@@ -66,5 +66,7 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "variant": "cpp"
-    }
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "REditorSupport.r",
 }

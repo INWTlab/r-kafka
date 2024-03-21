@@ -3,20 +3,20 @@
 From CRAN (add link once it is published)
 
 ```r
-# install.packages("rkafka") # not there yet
+# install.packages("kafka") # not there yet
 ```
 
 From GitHub:
 
 ```r
-remotes::install_github("inwtlab/r-kafka-client")
+remotes::install_github("inwtlab/r-kafka")
 ```
 
 From drat for latest (unstable) version (same version as on GitHub main trunk):
 
 ```r
 options(repos = c(getOption("repos"), INWTLab = "https://inwtlab.github.io/drat/"))
-install.packages("rkafka")
+install.packages("kafka")
 ```
 
 ### System Requirements (for compilation of the package)
@@ -42,20 +42,54 @@ brew install librdkafka
 - Add the path to the msys2 binaries to your windows PATH (settings -> edit environment variables for your account)
 - (Potentially) change directory to msys2 in the Makevars.win file if it is not located at `C:/rtools43/ucrt64/`
 
+## Getting started
+
+Produce messages
+
+```r
+library("kafka")
+
+config <- list(
+    "bootstrap.servers" = "brokers"
+)
+
+producer <- Producer$new(config)
+producer$produce("my-topic", "Simple message")
+producer$flush()
+```
+
+Consume messages
+
+```r
+library("kafka")
+
+config <- list(
+    "bootstrap.servers" = "brokers",
+    "auto.offset.reset" = "earliest",
+    "group.id" = "my-group-id"
+)
+
+consumer <- Consumer$new(config)
+consumer$subscribe("my-topic")
+
+result <- consumer$consume(1000)
+
+msg <- result_message(result)
+
+print(msg)
+
+consumer$close()
+```
+
+
 ## (Integration) Tests
 
 ### Start Local Kafka Cluster
 
-Install docker-compose:
-
-```sh
-apt install docker-compose
-```
-
 Start cluster:
 
 ```sh
-docker-compose up -d
+docker compose up -d
 ```
 
 Save configuration in .Renviron

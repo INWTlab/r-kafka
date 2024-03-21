@@ -5,7 +5,7 @@ test_that("Teardown consumer with subscription", {
         "group.id" = paste0("test-consumer-", paste0(sample(letters, 6, TRUE), collapse = ""))
     )
 
-    consumer <- Consumer(config_consumer)
+    consumer <- Consumer$new(config_consumer)
     consumer$subscribe(topic)
 
     msg <- consumer$consume(1000)
