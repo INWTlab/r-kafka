@@ -1,5 +1,6 @@
 library(httr)
 library(jsonlite)
+library(kafka)
 
 
 config <- list(
