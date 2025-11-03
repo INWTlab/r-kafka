@@ -76,6 +76,12 @@ public:
         }
     }
 
+    void destroy()
+    {
+        Rcpp::Rcout << "Deleting consumer" << std::endl;
+        delete consumer;
+    }
+
     List consume(const int timeout_ms)
     {
         List result;
@@ -122,5 +128,6 @@ RCPP_MODULE(consumer_module)
         .method("unsubscribe", &Consumer::unsubscribe)
         .method("commit", &Consumer::commit)
         .method("consume", &Consumer::consume)
-        .method("close", &Consumer::close);
+        .method("close", &Consumer::close)
+        .method("destroy", &Consumer::destroy);
 }

@@ -13,3 +13,16 @@ test_that("Teardown consumer with subscription", {
     expect_output(consumer$unsubscribe(), sprintf("Unsubscribing from %s", topic))
     expect_output(consumer$close(), "Closing consumer")
 })
+
+test_that("Teardown consumer without connection", {
+    config_consumer <- list(
+        "bootstrap.servers" = "localhost:9999",
+        "auto.offset.reset" = "earliest",
+        "group.id" = paste0("test-consumer-", paste0(sample(letters, 6, TRUE), collapse = ""))
+    )
+
+    consumer <- Consumer$new(config_consumer)
+
+    expect_output(consumer$close(), "Closing consumer")
+    expect_output(consumer$destroy(), "Deleting consumer")
+})
