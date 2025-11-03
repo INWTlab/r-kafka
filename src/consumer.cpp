@@ -74,6 +74,7 @@ public:
         {
             Rcpp::stop("Failed to close subscriber: " + RdKafka::err2str(err));
         }
+        delete consumer;
     }
 
     List consume(const int timeout_ms)

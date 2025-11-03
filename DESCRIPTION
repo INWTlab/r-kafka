@@ -1,7 +1,7 @@
 Package: kafka
 Type: Package
 Title: Kafka Client for R
-Version: 0.1.0
+Version: 0.1.1
 Author: Andreas Neudecker<andreas.neudecker@inwt-statistics.de>
 Maintainer: Andreas Neudecker<andreas.neudecker@inwt-statistics.de>
 Description: This package is a wrapper for the librdkafka C/C++ library. It can be used to produce and consume messages from Kafka.
