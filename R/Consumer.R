@@ -57,6 +57,11 @@ Consumer <- R6Class("Consumer",
         #' Close consumer
         close = function() {
             private$consumer$close()
+        },
+        #' @description
+        #' Close consumer
+        destroy = function() {
+            private$consumer$destroy()
         }
     ),
     private = list(

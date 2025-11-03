@@ -74,6 +74,11 @@ public:
         {
             Rcpp::stop("Failed to close subscriber: " + RdKafka::err2str(err));
         }
+    }
+
+    void destroy()
+    {
+        Rcpp::Rcout << "Deleting consumer" << std::endl;
         delete consumer;
     }
 
@@ -123,5 +128,6 @@ RCPP_MODULE(consumer_module)
         .method("unsubscribe", &Consumer::unsubscribe)
         .method("commit", &Consumer::commit)
         .method("consume", &Consumer::consume)
-        .method("close", &Consumer::close);
+        .method("close", &Consumer::close)
+        .method("destroy", &Consumer::destroy);
 }
