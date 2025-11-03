@@ -66,12 +66,11 @@ jobs:
 
       - name: Configure kafka server for tests
         run: |
-          docker exec kafka-server \
-            /opt/bitnami/kafka/bin/kafka-topics.sh \
+          docker exec kafka \
+            /usr/bin/kafka-topics \
               --bootstrap-server $BROKERS_INTERNAL \
               --create --topic $TOPIC \
               --partitions 4
-
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
