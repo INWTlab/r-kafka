@@ -9,7 +9,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
     consumer <- Consumer$new(list(
-        "bootstrap.servers" = "localhost:9093",
+        "bootstrap.servers" = "localhost:9092",
         "group.id" = paste(sample(letters, 10), collapse = ""),
         "enable.auto.commit" = "True"
     ))

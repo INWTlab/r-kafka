@@ -4,7 +4,7 @@ library(kafka)
 
 
 config <- list(
-    "bootstrap.servers" = "localhost:9093"
+    "bootstrap.servers" = "localhost:9092"
 )
 producer <- Producer$new(config)
 url <- "http://api.open-notify.org/iss-now.json"

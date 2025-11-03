@@ -2,7 +2,7 @@
 
 ```
 docker compose up -d
-docker exec kafka-server /opt/bitnami/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic iss --partitions 2
+docker compose exec kafka /usr/bin/kafka-topics --bootstrap-server localhost:9092 --create --topic iss --partitions 2
 ```
 
 Install Package
