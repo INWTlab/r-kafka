@@ -8,7 +8,7 @@ name: R-CMD-check
 
 env:
   BROKERS_INTERNAL: localhost:9092
-  BROKERS: localhost:9093
+  BROKERS: localhost:9092
   TOPIC: test-topic
 
 jobs:
@@ -34,17 +34,17 @@ jobs:
       - name: Install mac dependency
         if: runner.os == 'macos'
         run: |
-          brew install librdkafka docker docker-compose
+          brew install librdkafka docker
           colima start
 
       - name: Install linux dependency
         if: runner.os == 'linux'
         run: |
-          sudo apt install librdkafka-dev docker-compose
+          sudo apt install librdkafka-dev
 
       - name: Start kafka cluster
         run: |
-          docker-compose up -d
+          docker compose up -d
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -66,12 +66,11 @@ jobs:
 
       - name: Configure kafka server for tests
         run: |
-          docker exec kafka-server \
-            /opt/bitnami/kafka/bin/kafka-topics.sh \
+          docker compose exec kafka \
+            /usr/bin/kafka-topics \
               --bootstrap-server $BROKERS_INTERNAL \
               --create --topic $TOPIC \
               --partitions 4
-
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
