@@ -6,7 +6,7 @@ using namespace Rcpp;
 #ifndef __UTILITIES__
 #define __UTILITIES__
 
-inline RdKafka::Conf* generate_kafka_config(Rcpp::List conf_) {
+inline RdKafka::Conf* generate_kafka_config(Rcpp::List conf_, bool verbose = false) {
     RdKafka::Conf *conf;
     std::string errstr;
 
@@ -23,9 +23,10 @@ inline RdKafka::Conf* generate_kafka_config(Rcpp::List conf_) {
         {
             Rcpp::warning(errstr);
         }
-        else
-        {
-            Rcpp::Rcout << "Configuration property set: " << key << " = " << value << std::endl;
+        else if (verbose)
+        {   
+            // Do not print configuration values as they may contain credentials.
+            Rcpp::Rcout << "Configuration property set: " << key << std::endl;
         }
     }
 
